@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.chowall.mapper.UserMapper">
+    <select id="getId" parameterType="String" resultType="int">
+        SELECT COUNT(id) FROM user WHERE id=#{id}
+    </select>
+
+    <insert id="addUser">
+        INSERT INTO user (id, name, password, email) VALUES (#{id}, #{name}, #{password}, #{email})
+    </insert>
+
+    <select id="getUserById" parameterType="String" resultType="com.example.chowall.domain.UserDomain">
+        SELECT idx, id, name, password, email FROM user WHERE id=#{id}>
+    </select>
+
+    <select id="getUserByIdx" parameterType="int" resultType="com.example.chowall.domain.UserDomain">
+        SELECT idx, id, name,password, email FROM user WHERE idx=#{idx}
+    </select>
+
+</mapper>
