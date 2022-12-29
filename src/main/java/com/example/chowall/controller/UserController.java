@@ -1,11 +1,16 @@
 package com.example.chowall.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.chowall.domain.DataResponse;
+import com.example.chowall.service.userService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @PostMapping
+    @GetMapping("/addUser")
+    public DataResponse addUser(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("password") String password, @RequestParam("email") String email) {
+        DataResponse response = userService.addUser(id, name, password, email);
+
+    }
+
 }

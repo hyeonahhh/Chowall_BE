@@ -9,7 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDomain {
     int uID;
+    String id;
     String name;
     String password;
     String email;
+
+    public UserDomain(String id, String name, String password, String email) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
 }
