@@ -15,10 +15,8 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(value = "com.example.chowall", sqlSessionFactoryRef = "SqlSessionFactory")
+@MapperScan(value = "com.example.chowall.dao", sqlSessionFactoryRef = "SqlSessionFactory")
 public class MyBatisJavaConfig {
-    @Value("${spring.mybatis.mapper-locations}")
-    String mPath;
 
     @Bean(name = "datasource")
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -30,8 +28,7 @@ public class MyBatisJavaConfig {
     public SqlSessionFactory SqlSessionFactory(@Qualifier("datasource") DataSource DataSource, ApplicationContext applicationContext) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(DataSource);
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources(mPath));
-
+        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*Mapper.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
