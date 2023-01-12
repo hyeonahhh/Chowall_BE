@@ -36,11 +36,5 @@ public class UserController {
         return "no"; /**실패**/
     }
 
-    @PostMapping("/login")
-    public UserDomain login(UserDomain userDomain) {
-        logger.info("UserController login()");
-        return userService.login(userDomain);
-    }
-
 
 }
