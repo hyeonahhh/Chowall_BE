@@ -4,12 +4,14 @@ import com.example.chowall.domain.UserDomain;
 import com.example.chowall.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
     public final Logger logger = LoggerFactory.getLogger(UserController.class);
+    @Autowired
     UserService userService;
 
     /**중복확인**/
@@ -25,10 +27,10 @@ public class UserController {
 
     /**회원가입**/
     @PostMapping("/addUser")
-    public String addMember(UserDomain userDomain) {
+    public String addMember(@RequestBody UserDomain userDomain) {
+        System.out.println(userDomain.toString());
         logger.info("UserController addMember()");
         boolean b = userService.addUser(userDomain);
-        logger.info(userDomain.toString());
 
         if(b) { /**성공**/
             return "ok";

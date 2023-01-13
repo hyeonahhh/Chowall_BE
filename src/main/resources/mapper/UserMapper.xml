@@ -13,8 +13,4 @@
         SELECT idx, id, name, password, email FROM user WHERE id=#{id}>
     </select>
 
-    <select id="getUserByIdx" parameterType="int" resultType="com.example.chowall.domain.UserDomain">
-        SELECT idx, id, name,password, email FROM user WHERE idx=#{idx}
-    </select>
-
 </mapper>
