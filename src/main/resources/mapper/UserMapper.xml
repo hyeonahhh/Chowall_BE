@@ -17,4 +17,16 @@
         SELECT idx, id, name,password, email FROM user WHERE idx=#{idx}
     </select>
 
+    <update id="updateUser" parameterType="com.example.chowall.domain.UserDomain">
+        UPDATE user SET name = #{name}, id = #{id}, password = #{password}, email = #{email} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <select id="userList" resultType="com.example.chowall.domain.UserDomain">
+        SELECT * FROM user
+    </select>
+
 </mapper>
