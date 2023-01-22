@@ -2,6 +2,7 @@ package com.example.chowall.controller;
 
 import com.example.chowall.domain.UserDomain;
 import com.example.chowall.service.UserService;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,20 @@ public class UserController {
             return "ok";
         }
         return "no"; /**실패**/
+    }
+
+    @ResponseBody
+    @GetMapping("/{userIdx}")
+    public UserDomain getUserByIdx(@PathVariable("userIdx") int userIdx) {
+        UserDomain user = userService.getUserByIdx(userIdx);
+        return user;
+    }
+
+    @ResponseBody
+    @PostMapping("/login")
+    public UserDomain login(@RequestBody UserDomain userDomain) {
+        UserDomain user = userService.login(userDomain);
+        return user;
     }
 
 

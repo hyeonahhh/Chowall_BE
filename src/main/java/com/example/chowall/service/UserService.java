@@ -23,6 +23,16 @@ public class UserService {
         return n > 0;
     }
 
+    public UserDomain getUserByIdx(int userIdx) {
+        UserDomain user = dao.getUserByIdx(userIdx);
+        return user;
+    }
+
+    public UserDomain login(UserDomain user) {
+        UserDomain fullUser = dao.login(user);
+        return fullUser;
+    }
+
     public boolean deleteUser(String id) {
         int n = dao.deleteUser(id);
         return n > 0;
