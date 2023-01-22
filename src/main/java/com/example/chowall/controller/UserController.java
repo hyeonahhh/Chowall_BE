@@ -6,6 +6,7 @@ import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -53,5 +54,33 @@ public class UserController {
         return user;
     }
 
+    @PostMapping("/updateUser")
+    public String updateMember(UserDomain userDomain) {
+        logger.info("UserController updateUser()");
+        boolean b = userService.updateUser(userDomain);
+        logger.info(userDomain.toString());
 
+        if(b) { /**성공**/
+            return "ok";
+        }
+        return "no"; /**실패**/
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteMember(String id) {
+        logger.info("UserController deleteMember()");
+        boolean b = userService.deleteUser(id);
+
+        if(b) { /**성공**/
+            return "ok";
+        }
+        return "no"; /**실패**/
+    }
+
+    @GetMapping("/user")
+    public String ListMember(Model model) {
+        logger.info("UserController ListMember()");
+        model.addAttribute("userList",userService.ListUser());
+        return "user/list";
+    }
 }
